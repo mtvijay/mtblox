@@ -1,0 +1,49 @@
+# Makefile
+#
+# Targets:
+#       all: Builds the code
+#       build: Builds the code
+#       fmt: Formats the source files
+#       clean: cleans the code
+#
+
+# Go parameters
+GOCMD=go
+GOBUILD=$(GOCMD) build
+GOCLEAN=$(GOCMD) clean
+GOTEST=$(GOCMD) test
+GOINSTALL=$(GOCMD) install
+GOFMT=go fmt
+
+PROTOC=docker run --rm -v $(GOPATH):$(GOPATH) -w$(CURDIR) zededa/protoc:latest
+PROTO_INCLUDES = .
+
+# A literal space.
+space :=
+space +=
+
+# Joins elements of the list in arg 2 with the given separator.
+#   1. Element separator.
+#   2. The list.
+
+join-with = $(subst $(space),$1,$(strip $2))
+
+PROTO_INCLUDES_STRING=$(call join-with,:,$(PROTO_INCLUDES))
+
+# Package lists
+TOPLEVEL_PKG := .
+
+.PHONY: all
+
+all: fmt build
+
+build: fmt
+	$(GOBUILD)
+clean:
+	$(GOCLEAN)
+test:
+	$(GOTEST)
+fmt:
+	$(GOFMT)
+install:
+	$(GOINSTALL)

@@ -1,0 +1,26 @@
+{
+    "ServiceCommonConfig" : {
+    	"DebugMode": false,
+   	"PidFile": "helloworld.pid",
+        "Logging": 0,
+        "RootPath": "/tmp/hellow-data/",
+        "Services":[
+            {
+	   	 "Name": "cassandra",
+	   	 "Port": 9042,
+           	 "Server": "localhost"
+            },
+            {
+	   	 "name": "kafka",
+           	 "Port": 9092,
+           	 "Server": "localhost",
+	   	 "Topics": [
+			"TutorialTopic"
+	    	]
+            }
+    	]
+    },
+    "ServiceSpecificConfig" : {
+	"RootPath":"/tmp/hellow"
+    }
+}
