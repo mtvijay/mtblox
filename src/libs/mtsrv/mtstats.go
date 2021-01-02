@@ -1,8 +1,9 @@
 package mtsrv
 
 import (
-	"libs/mtlog"
 	"time"
+
+	"github.com/mtbox/mtlog"
 )
 
 func (s *Server) statusUpdate() int {

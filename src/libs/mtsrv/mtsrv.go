@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"libs/mtlog"
+	"github.com/mtbox/mtlog"
 )
 
 type ServiceDispatchFunc func(*NetServices, int) error

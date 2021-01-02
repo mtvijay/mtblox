@@ -3,8 +3,8 @@ package mtsrv
 import (
 	"fmt"
 	"github.com/shirou/gopsutil/process"
-	"libs/metrics"
-	"libs/mtlog"
+	"github.com/mtbox/metrics"
+	"github.com/mtbox/mtlog"
 	"runtime"
 	"time"
 )
