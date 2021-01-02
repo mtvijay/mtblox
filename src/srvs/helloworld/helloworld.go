@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	"libs/mtlog"
-	"libs/mtsrv"
+	"github.com/mtbox/mtlog"
+	"github.com/mtbox/mtsrv"
 )
 
 //this structure will keep health status
