@@ -1,0 +1,55 @@
+{
+    "ServiceCommonConfig": {
+        "DebugMode": false,
+        "LogCfg": {
+{{#MICROSERVICE_LOG_TO_STDOUT}}
+            "LogToStdout": true,
+{{/MICROSERVICE_LOG_TO_STDOUT}}
+            "Compress": true,
+            "File": "helloworld.log",
+            "Level": 0,
+            "MaxAge": 7,
+            "MaxBackups": 3,
+            "MaxSize": 100,
+            "Path": "/opt/zededa/zedcloud/logs"
+        },
+        "PidFile": "helloworld.pid",
+        "RootPath": "/tmp/hellow-data/",
+        "Services": [
+            {
+                "Name": "cassandra",
+                "Port": {{CASS01_PORT}},
+                "Server": "{{CASS01_HOST}}",
+                "User": "{{{CASS_USERNAME}}}",
+                "Password": "{{{CASS_PASSWORD}}}"
+            },
+            {
+                "Name": "kafka",
+                "Port": {{KAFKA01_PORT}},
+                "Server": "{{KAFKA01_HOST}}",
+                "Topics": [
+                    "TutorialTopic",
+                    "SrvsHealthTopic"
+                ]
+            },
+            {
+                "Frequency": 60,
+                "Name": "health"
+            },
+            {
+                "Name": "zvault",
+                "Port": {{{ZVAULT_CLOUD_API_PORT}}},
+                "Server": "{{{ZVAULT_CLOUD_API_HOST}}}",
+                "Frequency": 1440
+            }
+        ],
+        "SystemPeriodic": true
+    },
+    "ServiceSpecificConfig": {
+        "RootPath": "/tmp/hellow",
+         "VaultDetail": {
+                "RoleId": "{{{ZVAULT_RW_ROLE_ID}}}",
+                "SecretId": "{{{ZVAULT_RW_ROLE_SECRET}}}"
+	}
+    }
+}
