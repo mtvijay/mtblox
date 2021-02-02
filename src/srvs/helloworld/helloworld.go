@@ -158,6 +158,14 @@ func ListenAndServe(cp *mtsrv.NetServices, logging int) error {
 		}
 	case "zvault":
 		vaultMain(cp)
+
+	case "tls":
+		hctx, err := NewConnect(serviceName, false, nil)
+		if err != nil {
+			mtlog.Errorf("Critical: web service create failed %v", err)
+			return err
+		}
+		_ = hctx.AppendRouter(initProjectHandlers())
 	}
 	return nil
 }
